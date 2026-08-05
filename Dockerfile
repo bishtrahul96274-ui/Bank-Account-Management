@@ -19,4 +19,7 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 RUN npm install && npm run build
 
+RUN php artisan config:clear
+RUN php artisan cache:clear
+
 CMD php artisan serve --host 0.0.0.0 --port $PORT
