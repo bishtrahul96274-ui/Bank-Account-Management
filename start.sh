@@ -6,7 +6,9 @@ echo "Preparing Laravel application..."
 mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views bootstrap/cache database
 chmod -R 775 storage bootstrap/cache database
 
-touch database/database.sqlite
+if [ ! -f database/database.sqlite ]; then
+  touch database/database.sqlite
+fi
 chmod 664 database/database.sqlite
 
 if [ -z "${APP_KEY:-}" ]; then
