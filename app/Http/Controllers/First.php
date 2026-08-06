@@ -6,11 +6,18 @@ use App\Models\Account;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class First extends Controller
 {
     public function home()
     {
+        try {
+            DB::connection()->getPdo();
+        } catch (\Throwable $e) {
+            return view('home')->with('db_warning', 'Database is not ready yet.');
+        }
+
         return view('home');
     }
 
