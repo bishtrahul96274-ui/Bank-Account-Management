@@ -22,10 +22,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /app
 
-COPY composer.json /app/
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-
 COPY . /app
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 RUN npm install && npm run build
 
